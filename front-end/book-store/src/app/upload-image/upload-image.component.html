@@ -1,0 +1,20 @@
+<div class="col-md-7">
+  <div class="file-upload">
+    <button class="file-upload-btn my-btn" type="button" (click)="triggerInputFileEvent()">Add Your Image</button>
+    <div [ngClass]="{'image-dropping':imgDropping==true,'image-upload-wrap':true}" (dragover)="dragOver_Droping()" (dragleave)="dragLeave_Droping()"
+      [ngStyle]="{'display':locationUrl===null?'block':'none'}" #imageUpload>
+      <input type="file" class="file-upload-input" [formControl]="imageControl" (change)="showPreviewImage($event)" #inputFile/>
+      <div class="drag-text">
+        <h3>drag an image or choose 'Add Your Image'</h3>
+      </div>
+    </div>
+    <div class="file-upload-content" *ngIf="locationUrl">
+      <img [src]="locationUrl" class="file-upload-image imgPlaceholder" width="250" />
+      <div class="image-title-wrap">
+        <button type="button" class="remove-image" (click)="removeUpload()">remove:
+          <span class="image-title">{{imageName}}</span>
+        </button>
+      </div>
+    </div>
+    <p *ngIf="imageControl.errors&&(imageControl.touched||submitted)">imageControl.errors[0].val</p>
+  </div>

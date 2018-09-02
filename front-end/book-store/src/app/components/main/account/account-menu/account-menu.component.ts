@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Global } from '../../../../imports';
+import { Router } from '@angular/router';
+import { AuthenticationService,Global } from '../../../../imports';
 
 @Component({
   selector: 'app-account-menu',
@@ -10,9 +11,14 @@ export class AccountMenuComponent implements OnInit {
 
   localStorage = localStorage;
   global=Global;
-  constructor() { }
+  constructor(private authenticationService:AuthenticationService,private router:Router) { }
 
   ngOnInit() {
+  }
+  logout(){
+    this.authenticationService.logout();
+    this.router.navigate(['/bookStore/home']);
+
   }
 
 }

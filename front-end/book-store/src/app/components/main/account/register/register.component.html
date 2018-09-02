@@ -1,3 +1,48 @@
-<p>
-  register works!
-</p>
+<form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
+    <div>
+        <label>First Name</label>
+        <input formControlName="firstName">
+        <div *ngIf="firstName.errors&& (firstName.touched || submitted)">
+            <p *ngFor="let err of objectHolder.values(firstName.errors)">{{err}}</p>
+        </div>
+    </div>
+
+    <div>
+        <label>Last Name</label>
+        <input formControlName="lastName">
+        <div *ngIf="lastName.errors&& (lastName.touched || submitted)">
+            <p *ngFor="let err of objectHolder.values(lastName.errors)">{{err}}</p>
+        </div>
+    </div>
+
+    <div>
+        <label>User Name</label>
+        <input formControlName="userName">
+        <div *ngIf="userName.errors&& (userName.touched || submitted)">
+            <p *ngFor="let err of objectHolder.values(userName.errors)">{{err}}</p>
+        </div>
+        <p *ngIf="isExistUserName">user name already exsits</p>
+    </div>
+
+    <div>
+        <label>Password</label>
+        <input formControlName="password" type="password">
+        <div *ngIf="password.errors&& (password.touched || submitted)">
+            <p *ngFor="let err of objectHolder.values(password.errors)">{{err}}</p>
+        </div>
+        <p *ngIf="isExistPassword">password already exsits</p>
+
+    </div>
+
+    <!-- <div>
+        <label>Image</label>
+        <input formControlName="imageUrl" type="file">
+        <div *ngIf="imageUrl.errors&& (imageUrl.touched || submitted)">
+            <p *ngFor="let err of objectHolder.values(imageUrl.errors)">{{err}}</p>
+        </div>
+    </div> -->
+    <app-upload-image [submitted]="submitted" (eventImage)="getImage($event)"></app-upload-image>
+
+    <button type="submit">Register</button>
+
+</form>

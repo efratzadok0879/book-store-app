@@ -32,6 +32,7 @@ import {
   ProductService,
   ShoppingService
 } from './imports';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {
     CartComponent,
     CartProductComponent,
     //footer
-    FooterComponent
+    FooterComponent,
+    UploadImageComponent
 
   ],
   imports: [

@@ -1,26 +1,22 @@
-<form [formGroup]="formGroup" (ngSubmit)="submitLogin()">
-
+<form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
   <div>
     <label>User Name</label>
-    <input formControlName="userName"  (change)="onChange()">
-    <div *ngIf="userName.errors && (userName.touched || submitted)">
-        <p *ngIf="userName.errors.required">User name is required</p>
-        <p *ngIf="userName.errors.minlength">User name must contain at least 3 chars</p>
-        <p *ngIf="userName.errors.maxlength">User name must contain maximum 15 chars</p>
+    <input formControlName="userName" (change)="onChange()">
+    <div *ngIf="userName.errors&& (userName.touched || submitted)">
+      <p *ngFor="let err of objectHolder.values(userName.errors)">{{err}}</p>
     </div>
   </div>
 
   <div>
-      <label>Password</label>
-      <input type="password" formControlName="userPassword"  (change)="onChange()">
-      <div *ngIf="userPassword.errors && (userPassword.touched || submitted)">
-          <p *ngIf="userPassword.errors.required">password is required</p>
-          <p *ngIf="userPassword.errors.minlength">password must contain at least 5 chars</p>
-          <p *ngIf="userPassword.errors.maxlength">password must contain maximum 10 chars</p>
-      </div>
+    <label>Password</label>
+    <input type="password" formControlName="password" (change)="onChange()">
+    <div *ngIf="password.errors&& (password.touched || submitted)">
+      <p *ngFor="let err of objectHolder.values(password.errors)">{{err}}</p>
     </div>
-  
-  <p *ngIf="!isExist">user doesn't exist</p>
-  <input type="submit" value="Login" [disabled]="formGroup.invalid" />
+  </div>
+
+  <p *ngIf="!isExist">user name or password is not correct</p>
+
+  <button type="submit" [disabled]="loginFormGroup.invalid">Login</button>
 
 </form>

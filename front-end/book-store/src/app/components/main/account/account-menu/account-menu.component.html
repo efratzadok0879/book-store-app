@@ -3,7 +3,7 @@
     <ul class="nav navbar-nav">
       <li *ngIf="!localStorage.getItem(global.currentUser)" routerLinkActive="active"><a routerLink="/bookStore/myAccount/login">Login</a></li>
       <li *ngIf="!localStorage.getItem(global.currentUser)" routerLinkActive="active"><a routerLink="/bookStore/myAccount/register">Register</a></li>
-      <li *ngIf="localStorage.getItem(global.currentUser)" routerLinkActive="active"><a routerLink="/bookStore/home">LogOut</a></li>
+      <li *ngIf="localStorage.getItem(global.currentUser)" routerLinkActive="active"><a (click)="logout()">LogOut</a></li>
 
     </ul>
   </div>

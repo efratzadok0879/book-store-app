@@ -1,5 +1,14 @@
 <div class="row">
   <app-menu class="col-md-offset-2 col-md-2"></app-menu>
-  <span class=" col-md-offset-4 col-md-1">{{userName}}</span>
-  <img src="{{userImageUrl}}" width="75">
+
+  <div *ngIf="localStorage.getItem(global.currentUser)">
+    <span class=" col-md-offset-4 col-md-1">{{ json.parse(localStorage.getItem(global.currentUser)).firstName}} {{ json.parse(localStorage.getItem(global.currentUser)).lastName}}</span>
+    <img src="{{global.Uploads}}/{{json.parse(localStorage.getItem(global.currentUser)).imageUrl}}" width="75">
+  </div>
+
+  <div *ngIf="!localStorage.getItem(global.currentUser)">
+    <span class=" col-md-offset-4 col-md-1">guest</span>
+    <img src="https://image.flaticon.com/icons/png/128/149/149071.png" width="75">
+  </div>
+
 </div>

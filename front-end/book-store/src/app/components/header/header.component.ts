@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User,Global } from '../../imports';
+import { User, Global } from '../../imports';
+import { AuthenticationService } from '../../shared/services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -8,18 +9,12 @@ import { User,Global } from '../../imports';
 })
 export class HeaderComponent implements OnInit {
 
-  userName: string = "Guest";
-  userImageUrl:string="https://image.flaticon.com/icons/png/128/149/149071.png";
-  constructor() {
-    let currentUserId = localStorage.getItem(Global.currentUser);
-    if (currentUserId) {
-      let user: User = JSON.parse(localStorage.getItem(Global.userList)).find(user => user.id == currentUserId);
-      this.userName = `${user.firstName} ${user.lastName}`;
-      this.userImageUrl=user.imageUrl;
-    }
-  }
-
+  localStorage = localStorage;
+  global = Global;
+  json = JSON;
+  constructor(private authenticationService: AuthenticationService) { }
   ngOnInit() {
   }
+
 
 }
