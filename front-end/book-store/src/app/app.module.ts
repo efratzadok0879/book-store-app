@@ -29,7 +29,8 @@ import {
 
   //services
   AuthenticationService,
-  ProductService
+  ProductService,
+  ShoppingService
 } from './imports';
 
 @NgModule({
@@ -65,7 +66,8 @@ import {
   ],
   providers: [
     AuthenticationService,
-    ProductService
+    ProductService,
+    ShoppingService
   ],
   bootstrap: [AppComponent]
 })

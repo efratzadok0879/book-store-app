@@ -13,15 +13,15 @@ export class AllProductsComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    
-      this.getAllProducts("gh");
+
+      this.getAllProducts();
       this.productService.subject.subscribe(
         {
           next:(term: string)=>
           this.getAllProducts(term)
     });
   }
-  getAllProducts(term: string) {
+  getAllProducts(term?: string) {
     this.productService.getAllProducts(term).subscribe(res => {
       this.products = res;
       console.log(res);

@@ -8,6 +8,6 @@ export class Product {
         public publishedDate: Date,
         public description: string,
         public pageCount: number,
-        public imageURL:string
+        public imageLinks:string
     ) { }
 }

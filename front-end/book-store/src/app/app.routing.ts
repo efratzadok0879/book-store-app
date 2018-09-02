@@ -28,7 +28,7 @@ const appRoutes: Routes = [
         path: 'bookStore/products', component: ProductsComponent, children:
             [
                 { path: 'allProducts', component: AllProductsComponent },
-                { path: 'productDetails', component: ProductDetailsComponent },
+                { path: 'productDetails/:productId', component: ProductDetailsComponent },
                 { path: '**', redirectTo: 'allProducts' }
             ]
     },

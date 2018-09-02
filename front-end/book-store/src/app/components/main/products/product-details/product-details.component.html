@@ -1,3 +1,13 @@
-<p>
-  product-details works!
-</p>
+<img src="{{product.imageURL}}">
+<h2>{{product.title}}</h2>
+<h3>{{product.subtitle}}</h3>
+<button *ngIf="localStorage.getItem(global.currentUser)" (click)="AddToCart()" >Add To Cart</button>
+<button (click)="preview()">Preview</button>
+
+<span><b>title: </b>{{product.title}}</span>
+<span><b>subtitle: </b>{{product.subtitle}}</span>
+<span *ngFor="let author of product.authors"><b>author: </b>{{author}}</span>
+<span><b>publisher: </b>{{product.publisher}}</span>
+<span><b>publishedDate: </b>{{product.publishedDate}}</span>
+<span><b>description: </b>{{product.description}}</span>
+<span><b>pageCount: </b>{{product.pageCount}}</span>

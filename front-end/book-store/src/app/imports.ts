@@ -7,6 +7,7 @@ export { Product } from './shared/models/product.model';
 //services
 export { AuthenticationService } from './shared/services/authentication.service';
 export { ProductService } from './shared/services/product.service';
+export { ShoppingService } from './shared/services/shoping.service'
 
 export { AuthGuard } from './shared/auth.guard';
 export { Global } from './shared/global';
