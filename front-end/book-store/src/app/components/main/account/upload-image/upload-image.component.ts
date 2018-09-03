@@ -24,8 +24,7 @@ export class UploadImageComponent {
   imageControl:FormControl;
   locationUrl: string = null;
   imageName: string = '';
-  imgDropping: boolean = false;
-
+  touched:boolean=false;
   constructor() {
     this.eventImage = new EventEmitter<any>();
     this.imageControl=new FormControl('', [ f => !f.value ? { "val": 'image is required' } : null,]);
@@ -47,17 +46,12 @@ export class UploadImageComponent {
   }
 
   triggerInputFileEvent() {
+    this.touched=true;
     this.myInputVariable.nativeElement.click();
   }
   removeUpload() {
 
     this.locationUrl = null;
-  }
-  dragOver_Droping() {
-    this.imgDropping = true;
-  }
-  dragLeave_Droping() {
-    this.imgDropping = false;
   }
 
 }

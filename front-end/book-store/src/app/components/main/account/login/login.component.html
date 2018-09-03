@@ -1,9 +1,9 @@
 <div class="box">
-  <div id="header">
+  <div class="header">
     <div class="thumbur">
       <div class="icon-lock"></div>
     </div>
-    <div id="bottom-head"></div>
+    <hr/>
   </div>
   <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
     <div class="group">
@@ -24,14 +24,7 @@
         <p *ngFor="let err of objectHolder.values(password.errors)" class="myAlert">{{err}}</p>
       </div>
     </div>
-    <p *ngIf="!isExist">user name or password is not correct</p>
-    <button id="buttonlogintoregister" type="submit" [disabled]="loginFormGroup.invalid||isExist==false">Login</button>
+    <p *ngIf="!isExist" class="myAlert">user name or password is not correct</p>
+    <button type="submit" class="button col-md-offset-2 col-md-8" [disabled]="loginFormGroup.invalid||isExist==false">Login</button>
   </form>
-  <div id="footer-box">
-    <p class="footer-text">not a member?
-      <span class="sign-up">
-        <a routerLink="/bookStore/myAccount/register">Register now</a>
-      </span>
-    </p>
-  </div>
 </div>

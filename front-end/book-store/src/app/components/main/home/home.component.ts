@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   address: { city: string, street: string, houseNumber: number };
-  bookStoreUrl:string;
+  // bookStoreUrl:string;
   
   constructor() {
     this.address = { city: "Tel-aviv", street: "Hamasger", houseNumber: 12 };

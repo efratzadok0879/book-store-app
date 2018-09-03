@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 import { routing } from './app.routing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 import {
   //components
   AppComponent,
   //header
   HeaderComponent,
+  LogoComponent,
   MenuComponent,
   //main
   MainComponent,
@@ -17,6 +19,7 @@ import {
   AccountMenuComponent,
   LoginComponent,
   RegisterComponent,
+  UploadImageComponent,
   ProductsComponent,
   SearchComponent,
   AllProductsComponent,
@@ -24,6 +27,7 @@ import {
   ProductDetailsComponent,
   CartComponent,
   CartProductComponent,
+  DialogConfirmComponent,
   //footer
   FooterComponent,
 
@@ -32,7 +36,6 @@ import {
   ProductService,
   ShoppingService
 } from './imports';
-import { UploadImageComponent } from './upload-image/upload-image.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     AccountMenuComponent,
     LoginComponent,
     RegisterComponent,
+    UploadImageComponent,
     ProductsComponent,
     AllProductsComponent,
     SearchComponent,
@@ -55,16 +59,21 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     ProductDetailsComponent,
     CartComponent,
     CartProductComponent,
+    DialogConfirmComponent,
     //footer
     FooterComponent,
-    UploadImageComponent
-
+    LogoComponent
   ],
   imports: [
     BrowserModule,
     routing,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BootstrapModalModule.forRoot({ container: document.body })
+
+  ],
+  entryComponents: [
+    DialogConfirmComponent
   ],
   providers: [
     AuthenticationService,

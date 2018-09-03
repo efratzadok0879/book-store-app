@@ -3,15 +3,30 @@ html,body{
     height: 100%;
     overflow: hidden;
     font-family: "Segoe UI";
+    font-size:16px;
 }
 .button{
     background-color: white;
-    border: solid 3px #5cb85c;
+    border: solid 2px #2196F3;
     border-radius: 25px;
-    padding: 2% 30%;
+    padding: 2%;
     display: block;
+    color: gray;
 }
 .button:hover{
-    background-color:#5cb85c ;
+    background-color:#2196F3 ;
 }
+@media only screen and (max-width: 1500px) {
 
+    h3 { 
+       font-size: 15px; 
+      
+    }
+    h4{
+        font-size: 12px;
+    }
+    dl *{
+        font-size: 15px;
+    }
+ 
+ }

@@ -4,110 +4,19 @@
 
 /* BOX LOGIN */
 .box {
-    position: absolute;
+    background-color: #fff;
+    border-radius: 25px;
+    height: 75%;
+    width: 35%;
     margin: auto;
-    height: 70%;
-    top: 15%;
-    left: 0;
-    z-index: 0;
-    right: 0;
-    width: 470px;
-    color: #666;
-    border-radius: 3px;
-    background: #FFF;
+    padding: 2% 1%;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
-#header {
-    background: #009688;
-    position: relative;
-    height: 25%;
-    width: 100%;
-    margin-bottom: 30px;
-}
-
-#cont-lock {
-    width: 100%;
-    height: 65px;
-    position: relative;
-}
-
-.lock {
-    text-align: center;
-    color: white;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0;
-    top: 0;
-    bottom: 0;
-    line-height: 65px;
-    font-size: 28px;
-}
-
-#bottom-head {
-    position: relative;
-    background: #00796b;
-	height: 25%;
-    top: 32%;
-}
-
-    #bottom-head::after {
-        content: '';
-        width: 0px;
-        height: 0px;
-        display: block;
-        position: absolute;
-        margin: auto;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-bottom: 7px solid white;
-        border-right: 7px solid rgba(0, 0, 0, 0);
-        border-left: 7px solid rgba(0, 0, 0, 0);
-        border-top: 7px solid rgba(0, 0, 0, 0);
-    }
-
-.box h1 {
-    margin-left: 20px;
-    margin-top: 0;
-    font-size: 24px;
-    font-weight: 300;
-    color: #cfd8dc;
-    line-height: 35px;
-}
-
-.box button {
-    background: #009688;
-    border: 0;
-    color: #cfd8dc;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 300;
-    width: 330px;
-    margin: 20px auto;
-    display: block;
-    cursor: pointer;
-    -webkit-transition: all 0.4s;
-    transition: all 0.4s;
-    border-radius: 2px;
-}
-
-    .box button:active {
-        background: #009688;
-        color: #263238;
-    }
-
-    .box button:hover {
-        background: #00796b;
-        color: #FFF;
-        -webkit-transition: all 0.4s;
-        transition: all 0.4s;
-    }
-
-    .box button:disabled {
+    .box .button:disabled {
         background: #cfd8dc;
-        color: #009688;
+		color: #1d86da;
+		border: none;
     }
 
 .box p {
@@ -115,35 +24,8 @@
     text-align: center;
 }
 
-
-
-#footer-box {
-    width: 100%;
-    height: 50px;
-    background: #00695c;
-    position: absolute;
-    bottom: 0;
-}
-
-.footer-text {
-    color: #cfd8dc;
-}
-
-.sign-up, a {
-    color: white;
-    cursor: pointer;
-}
-
-    .sign-up:hover, a:hover {
-        color: #b2dfdb;
-    }
-
-    a:link, a:visited {
-        text-decoration: none;
-    }
-
 form {
-	top: 5%;
+    padding-top: 5%;
     position: relative;
     height: 67%;
 }
@@ -166,7 +48,6 @@ form {
     background-image: linear-gradient(to right, #efefef 0%, #efefef 50%, #e1e1e1 50%, #e1e1e1 100%);
     margin: auto;
     border-radius: 100%;
-    top: 20px;
 }
 
     .thumbur:before {
@@ -188,12 +69,12 @@ form {
     position: relative;
     width: 40px;
     height: 30px;
-    background: #00796b;
+    background: #2196f3cf;
     margin: auto;
     -webkit-transform: translateY(60px);
     transform: translateY(60px);
     border-radius: 8px;
-    box-shadow: 0 0 2px #00695c inset;
+    box-shadow: 0 0 2px #146aaf inset;
     bottom: 30px;
 }
 
@@ -202,7 +83,7 @@ form {
         position: absolute;
         width: 25px;
         height: 17px;
-        border: 4.5px solid #00796b;
+        border: 4.5px solid   #2196f3cf;
         border-bottom: none;
         bottom: 100%;
         left: 50%;
@@ -274,14 +155,14 @@ form {
 		.inputMaterial:focus ~ .label, .label.full {
 			top: -20px;
 			font-size: 14px;
-			color: #009688;
+			color: #2196F3;
 		}
 	
 	/* BOTTOM BARS ================================= */
 	.bar {
 		position: relative;
 		display: block;
-		width: 320px;
+		width: 100%;
 	}
 	
 		.bar:before, .bar:after {
@@ -290,7 +171,7 @@ form {
 			width: 0;
 			bottom: 1px;
 			position: absolute;
-			background: #009688;
+			background: #2196f3cf;
 			transition: 0.2s ease all;
 			-moz-transition: 0.2s ease all;
 			-webkit-transition: 0.2s ease all;
@@ -349,33 +230,7 @@ form {
 			background: transparent;
 		}
 	}
-	
-	.my-btn {
-		width: 70%;
-		margin: 0;
-		color: #fff;
-		background: #4abfb4;
-		border: none;
-		padding: 10px;
-		transition: all .2s ease;
-		outline: none;
-		text-transform: uppercase;
-		text-align: center;
-		margin: auto;
-		display: block;
-	}
-	
-		.my-btn:hover {
-			background: #31abab;
-			color: #ffffff;
-			transition: all .2s ease;
-			cursor: pointer;
-		}
-	
-		.my-btn:active {
-			border: 0;
-			transition: all .2s ease;
-		}
+
 	/*============================*/
 	.myAlert{
 		color: red;

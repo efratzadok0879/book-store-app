@@ -8,12 +8,6 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
-
 const cors = require('cors');
 var corsOptions = {
     origin: 'http://localhost:4200',
@@ -71,12 +65,14 @@ app.post("/api/register", (req, res) => {
         let user1 = currentList.find(user => user.userName.toLowerCase() == currentUser.userName.toLowerCase());
         if (user1 != null) {
             console.log(-1);
+            removeImage(currentUser.profileImageUrl)
             res.send({ userId: -1 });
             return;
         }
         let user2 = currentList.find(user => user.password.toLowerCase() == currentUser.password.toLowerCase());
         if (user2 != null) {
             console.log(-2);
+            removeImage(currentUser.profileImageUrl)
             res.send({ userId: -2 });
             return;
         }
@@ -118,12 +114,21 @@ app.post("/api/upload", upload.single("file" /* name attribute of <file> element
         });
     });
 
-const basePath = path.join(__dirname + "/uploads");
+const basePath = path.join(__dirname);
 
 app.get(`/uploads`, (req, res) => {
     let fileName = req.query.fileName;
-    res.sendFile(`${basePath}/${fileName}`);
+    res.sendFile(`${basePath}/uploads/${fileName}`);
 });
+
+// Assuming that 'path/file.txt' is a regular file.
+removeImage=(fileName)=>{
+    fs.unlink(`${basePath}/uploads/${fileName}`, (err) => {
+        if (err) throw err;
+        console.log('path/file.txt was deleted');
+      });
+}
+
 
 isValidLogin = (userName, password) => {
     return isValidUserName(userName) && isValidPassword(password);
@@ -133,7 +138,7 @@ isValidRegister = (user) => {
         isValidLastName(user.lastName) &&
         isValidUserName(user.userName) &&
         isValidPassword(user.password) &&
-        isValidImage(user.imageUrl);
+        isValidImage(user.profileImageUrl);
 }
 isValidFirstName = (firstName) => {
     return isValidString(firstName) && isValidLength(firstName, 2, 15) && firstName.match(/^[A-Za-z]+$/);
@@ -149,8 +154,8 @@ isValidPassword = (password) => {
     return isValidString(password) && isValidLength(password, 5, 10);
 }
 
-isValidImage = (imageUrl) => {
-    return isValidString(imageUrl);
+isValidImage = (profileImageUrl) => {
+    return isValidString(profileImageUrl);
 }
 isValidString = (str) => {
     return str != null && str != undefined && typeof str == 'string';

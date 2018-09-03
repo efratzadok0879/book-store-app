@@ -9,10 +9,10 @@ export class AuthenticationService {
     
     constructor(private httpClient:HttpClient) { }
 
-    getUserById(userId:number):Observable<any>{
-        let url:string=`${this.basicURL}/getUserById?userId=${userId}`;
-        return this.httpClient.get(url);
-    }
+    // getUserById(userId:number):Observable<any>{
+    //     let url:string=`${this.basicURL}/getUserById?userId=${userId}`;
+    //     return this.httpClient.get(url);
+    // }
 
     login(userName: string, password: string):Observable<any> {
         let url:string=`${this.basicURL}/login`;

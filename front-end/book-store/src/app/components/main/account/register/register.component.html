@@ -1,9 +1,9 @@
 <div class="box">
-    <div id="header">
+    <div class="header">
         <div class="thumbur">
             <div class="icon-lock"></div>
         </div>
-        <div id="bottom-head"></div>
+        <hr/>
     </div>
     <div class="scrollbar" id="style-2">
         <div id="form" class="force-overflow">
@@ -48,15 +48,9 @@
                 </div>
                 <app-upload-image [submitted]="submitted" (eventImage)="getImage($event)"></app-upload-image>
 
-                <button id="buttonlogintoregister" type="submit" [disabled]="registerFormGroup.invalid||isExistUserName || isExistPassword">Register</button>
+                <button type="submit" class="button col-md-offset-2 col-md-8" [disabled]="registerFormGroup.invalid||isExistUserName || isExistPassword">Register</button>
             </form>
         </div>
     </div>
-    <div id="footer-box">
-        <p class="footer-text">already a member?
-            <span class="sign-up">
-                <a routerLink="/bookStore/myAccount/login">login</a>
-            </span>
-        </p>
-    </div>
+    
 </div>

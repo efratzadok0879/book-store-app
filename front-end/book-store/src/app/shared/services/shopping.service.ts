@@ -21,9 +21,12 @@ export class ShoppingService {
     removeBookFromShoppingList(productId: number) {
         let shoppingList: Product[] = this.getAllShoppingList();
         let index = shoppingList.findIndex(product => product.id == productId);
-        shoppingList.slice(index, 1);
+        shoppingList.splice(index, 1);
         localStorage.setItem(Global.shoppingList, JSON.stringify(shoppingList));
         return true;
+    }
+    clearCart(){
+        localStorage.setItem(Global.shoppingList,'[]');
     }
 
 

@@ -1,6 +1,14 @@
-<div>
-  <img src="{{product.imageURL}}">
-  <h2>{{product.title}}</h2>
-  <h3>{{product.subtitle}}</h3>
-  <button (click)="removeBook()">Remove Book</button>
+<div class="productContainer col-md-offset-1 col-md-10">
+  <div class="content">
+      <div class="imageContainer col-md-6">
+          <img src="{{product.imageLinks}}">
+      </div>
+      <div class="col-md-6">
+          <h3>{{product.title}}</h3>
+          <h4>{{product.subtitle}}</h4>
+      </div>
+  </div>
+  <div class="row">
+      <button (click)="removeBook()" class="button col-md-offset-1 col-md-10">Remove Book</button>
+  </div>
 </div>

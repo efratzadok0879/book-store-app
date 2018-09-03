@@ -18,9 +18,9 @@ export class ProductService {
         // let url: string = `https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=40&fields=items(saleInfo%2FlistPrice%2CvolumeInfo(authors%2Cdescription%2CimageLinks(smallThumbnail%2Cthumbnail)%2Clanguage%2CmainCategory%2CpageCount%2CpublishedDate%2Cpublisher%2Csubtitle%2Ctitle))`;
         // return this.httpClient.get(url);
         let products = [
-            new Product(0, 'cdgfhjk,fmhvjksth  ', 'bbbhfhfghjgf', ['cccfgbvtry','fhdhdfthf'], 'dddhydfjutydjdrjn', new Date(), 'eee', 10, 'http://localhost:3500/uploads?fileName=613f5866-529d-4514-8bf8-841f34b42d91.JPG'),
-            new Product(1, 'cdgfhjk,  ', 'bbbhfhfghjgf', [], 'dddhydfjutydjdrjn', new Date(), 'eee', 10, 'http://localhost:3500/uploads?fileName=613f5866-529d-4514-8bf8-841f34b42d91.JPG'),
-            new Product(2, 'cdgfhjk,fmhvjksth  ', 'bbbhfiiiiiiiiiiiiiiiiiiiiihfghjgf', ['fhdhdfthf'], 'dddhydfjutydjdrjn', new Date(), 'eee', 10, 'http://localhost:3500/uploads?fileName=613f5866-529d-4514-8bf8-841f34b42d91.JPG'),
+            new Product(0, 'cdgfhjk,fmhvjksth  ', 'bbbhfhfghjgf', ['cccfgbvtry','fhdhdfthf'], 'dddhydfjutydjdrjn', new Date(), 'eee', 10, 'http://localhost:4200/assets/tmp.JPG'),
+            new Product(1, 'cdgfhjk,  ', 'bbbhfhfghjgf', [], 'dddhydfjutydjdrjn', new Date(), 'eee', 10, 'http://localhost:4200/assets/tmp.JPG'),
+            new Product(2, 'cdgfhjk, fmhvjksth  ', 'bbbhfiiiiiii iiiiiiiiii iiiihfghjgf', ['fhdhdfthf'], 'dddhydfjutydjdrjn', new Date(), 'eee', 10, 'http://localhost:4200/assets/tmp.JPG')
 
         ];
         return of(products);

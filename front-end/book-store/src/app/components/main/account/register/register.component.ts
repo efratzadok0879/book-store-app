@@ -43,7 +43,7 @@ export class RegisterComponent {
     let user: User = this.registerFormGroup.value;
     this.authenticationService.upload(this.image).subscribe(res => {
       console.log(res.newFilename);
-      user.imageUrl = res.newFilename;
+        user.profileImageUrl = res.newFilename;
       this.register(user);
     });
   }
@@ -53,7 +53,6 @@ export class RegisterComponent {
     this.authenticationService.register(user).subscribe(
       res => {
         let userId: number = res.userId;
-        debugger;
         switch (userId) {
           case -1:
             this.isExistUserName = true;
