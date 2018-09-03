@@ -15,10 +15,10 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private productService: ProductService,private shoppingService:ShoppingService) { }
 
   ngOnInit() {
-    // let productId: number;
-    // this.activatedRoute.params.subscribe(params => productId = params['productId']);
-    // this.productService.getProductById(productId).subscribe(res => this.product = res)
-
+    let productId: number;
+    this.activatedRoute.params.subscribe(params => productId = params['productId']);
+    this.productService.getProductById(productId).subscribe(res => this.product = res)
+console.log(this.product);
   }
   AddToCart() {
     this.shoppingService.addBookToShoppingList(this.product);

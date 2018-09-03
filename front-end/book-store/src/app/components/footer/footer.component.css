@@ -2,3 +2,7 @@ footer{
     height: 15%;   
     border-top: solid 1px grey;
 }
+h3{
+text-align: center;
+padding: 2%;
+}

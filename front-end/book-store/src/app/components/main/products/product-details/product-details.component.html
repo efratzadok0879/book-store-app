@@ -1,13 +1,27 @@
-<img src="{{product.imageURL}}">
-<h2>{{product.title}}</h2>
-<h3>{{product.subtitle}}</h3>
-<button *ngIf="localStorage.getItem(global.currentUser)" (click)="AddToCart()" >Add To Cart</button>
-<button (click)="preview()">Preview</button>
+<div *ngIf="product" class="productDetailsContainer col-md-offset-3 col-md-6 row">
+    <div class="col-md-6">
+        <img class="col-md-12" src="{{product.imageLinks}}">
+        <button class="btn-outline-primary button col-md-offset-1 col-md-10" *ngIf="localStorage.getItem(global.currentUser)" (click)="AddToCart()">Add To Cart</button>
+        <button class="button col-md-offset-1 col-md-10" (click)="preview()">Preview</button>
+    </div>
+    <div class="col-md-6">
+        <dl>
+            <dt class="col-md-6">title:</dt>
+            <dd class="col-md-6">{{product.title}}</dd>
+            <dt class="col-md-6">subtitle:</dt>
+            <dd class="col-md-6">{{product.subtitle}}</dd>
+            <dt class="col-md-6">publisher:</dt>
+            <dd class="col-md-6">{{product.publisher}}</dd>
+            <dt class="col-md-6">publishedDate:</dt>
+            <dd class="col-md-6">{{product.publishedDate| date : 'shortDate'}}</dd>
+            <dt class="col-md-6">description:</dt>
+            <dd class="col-md-6">{{product.description}}</dd>
+            <dt class="col-md-6">pageCount:</dt>
+            <dd class="col-md-6">{{product.pageCount}}</dd>
 
-<span><b>title: </b>{{product.title}}</span>
-<span><b>subtitle: </b>{{product.subtitle}}</span>
-<span *ngFor="let author of product.authors"><b>author: </b>{{author}}</span>
-<span><b>publisher: </b>{{product.publisher}}</span>
-<span><b>publishedDate: </b>{{product.publishedDate}}</span>
-<span><b>description: </b>{{product.description}}</span>
-<span><b>pageCount: </b>{{product.pageCount}}</span>
+        </dl>
+
+        <!-- <span *ngFor="let author of product.authors">
+            <b>author: </b>{{author}}</span> -->
+
+    </div>

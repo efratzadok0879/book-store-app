@@ -1,0 +1,15 @@
+.productDetailsContainer{
+    border-radius: 15px;
+    box-shadow: 0 0 11px 0px #777;
+    margin-bottom: 10%;
+    padding: 3%;
+    margin-top: 3%;
+    height: 57vh;
+}
+
+dl{
+    font-size: 20px;
+}
+.button{
+    margin-top: 5%;
+}
