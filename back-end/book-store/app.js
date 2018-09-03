@@ -8,15 +8,15 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 const cors = require('cors');
 var corsOptions = {
-    origin: 'http://localhost:3200',
+    origin: 'http://localhost:4200',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }
 app.use(cors(corsOptions));
@@ -25,15 +25,15 @@ var multer = require('multer')
 var upload = multer({ dest: 'uploads/' })
 const uuidv4 = require('uuid/v4');
 
-app.get("/api/getUserById", (req, res) => {
-    let userId = req.query.userId;
-    let cuurentList = require("./user.json");
-    let user = cuurentList.find(user => user.id == userId);
-    if (user != null)
-        res.status(201).send(user);
-    else
-        res.status(404);
-})
+// app.get("/api/getUserById", (req, res) => {
+//     let userId = req.query.userId;
+//     let cuurentList = require("./user.json");
+//     let user = cuurentList.find(user => user.id == userId);
+//     if (user != null)
+//         res.status(201).send(user);
+//     else
+//         res.status(404);
+// })
 
 app.post("/api/login", (req, res) => {
     console.log('aaa');
@@ -99,11 +99,10 @@ const handleError = (err, res) => {
         .end("Oops! Something went wrong!");
 };
 
-app.post(
-    "/api/upload",
-    upload.single("file" /* name attribute of <file> element in your form */),
+app.post("/api/upload", upload.single("file" /* name attribute of <file> element in your form */),
     (req, res) => {
         console.log("upload");
+        console.log(__dirname);  
         const tempPath = req.file.path;
         console.log(tempPath);
         const newFilename = `${uuidv4()}.JPG`;
@@ -115,9 +114,16 @@ app.post(
                 return handleError(err, res);
             console.log("rename");
 
-            res.status(200).send({newFilename:newFilename});
+            res.status(200).send({ newFilename: newFilename });
         });
     });
+
+const basePath = path.join(__dirname + "/uploads");
+
+app.get(`/uploads`, (req, res) => {
+    let fileName = req.query.fileName;
+    res.sendFile(`${basePath}/${fileName}`);
+});
 
 isValidLogin = (userName, password) => {
     return isValidUserName(userName) && isValidPassword(password);
@@ -157,7 +163,7 @@ const port = process.env.PORT || 3500;
 app.listen(port, () => { console.log(`OK`); });
 
 
-//const basePath = path.join(__dirname + "/dist");
+
 
 // app.get(`/`, (req, res) => {
 //     let linkList = "";

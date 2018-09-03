@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, ValidatorFn, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Global, User, AuthenticationService } from '../../../../imports';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,9 +17,9 @@ export class LoginComponent {
   isExist: boolean = true;
 
   //----------------CONSTRUCTOR------------------
-  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
+  constructor(private formBuilder: FormBuilder,private router:Router, private authenticationService: AuthenticationService) {
     this.loginFormGroup = this.formBuilder.group({
-      userName: ['', this.createValidatorArr("userName", 3, 15,/^[A-Za-z]+$/)],
+      userName: ['', this.createValidatorArr("userName", 3, 15, /^[A-Za-z]+$/)],
       password: ['', this.createValidatorArr("password", 5, 10)],
 
     });
@@ -35,23 +37,25 @@ export class LoginComponent {
     ];
   }
 
-  onChange() {
-    this.isExist = true;
-  }
-
   onSubmit() {
-    console.log(this.loginFormGroup.controls);
     this.submitted = true;
-    this.authenticationService.login(this.userName.value, this.password.value)
-      .subscribe(user => {
-        if (user!=null)
-          localStorage.setItem(Global.currentUser,JSON.stringify(user));
-        else
-          this.isExist = false;
-      });
-
+    this.login();
   }
 
+  login(){
+    this.authenticationService.login(this.userName.value, this.password.value)
+    .subscribe(user => {
+      if (user != null) {
+        localStorage.setItem(Global.currentUser, JSON.stringify(user));
+        this.router.navigate(['bookStore/products']);
+      }
+      else
+        this.isExist = false;
+    });
+  }
+  register(){
+    this.router.navigate(['/bookStore/myAccount/register']);
+  }
   //----------------GETTERS-------------------
 
   get userName() {

@@ -1,22 +1,37 @@
-<form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
-  <div>
-    <label>User Name</label>
-    <input formControlName="userName" (change)="onChange()">
-    <div *ngIf="userName.errors&& (userName.touched || submitted)">
-      <p *ngFor="let err of objectHolder.values(userName.errors)">{{err}}</p>
+<div class="box">
+  <div id="header">
+    <div class="thumbur">
+      <div class="icon-lock"></div>
     </div>
+    <div id="bottom-head"></div>
   </div>
-
-  <div>
-    <label>Password</label>
-    <input type="password" formControlName="password" (change)="onChange()">
-    <div *ngIf="password.errors&& (password.touched || submitted)">
-      <p *ngFor="let err of objectHolder.values(password.errors)">{{err}}</p>
+  <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+    <div class="group">
+      <input formControlName="userName" id="userName" class="inputMaterial" (keyup)="isExist = true">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label for="username" [ngClass]="{'label':true,'full':userName.value!=''}">User Name</label>
+      <div *ngIf="userName.errors&& (userName.touched || submitted)">
+        <p *ngFor="let err of objectHolder.values(userName.errors)" class="myAlert">{{err}}</p>
+      </div>
     </div>
+    <div class="group">
+      <input type="password" formControlName="password" id="password" class="inputMaterial" (keyup)="isExist = true">
+      <span class="highlight"></span>
+      <span class="bar"></span>
+      <label for="password" [ngClass]="{'label':true,'full':password.value!=''}">Password</label>
+      <div *ngIf="password.errors&& (password.touched || submitted)">
+        <p *ngFor="let err of objectHolder.values(password.errors)" class="myAlert">{{err}}</p>
+      </div>
+    </div>
+    <p *ngIf="!isExist">user name or password is not correct</p>
+    <button id="buttonlogintoregister" type="submit" [disabled]="loginFormGroup.invalid||isExist==false">Login</button>
+  </form>
+  <div id="footer-box">
+    <p class="footer-text">not a member?
+      <span class="sign-up">
+        <a routerLink="/bookStore/myAccount/register">Register now</a>
+      </span>
+    </p>
   </div>
-
-  <p *ngIf="!isExist">user name or password is not correct</p>
-
-  <button type="submit" [disabled]="loginFormGroup.invalid">Login</button>
-
-</form>
+</div>

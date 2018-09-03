@@ -6,7 +6,7 @@ import { User, AuthenticationService, Global } from '../../../../imports';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css','../login/login.component.css']
 })
 
 export class RegisterComponent {
