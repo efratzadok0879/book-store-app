@@ -1,27 +1,29 @@
 <div *ngIf="product" class="productDetailsContainer col-md-offset-3 col-md-6 row">
-    <div class="col-md-6">
-        <img class="col-md-12" src="{{product.imageLinks}}">
+    <div class="col-md-6 right">
+        <div class="imageContainer col-md-12">
+            <img src="{{product.imageLinks}}">
+        </div>
         <button class="btn-outline-primary button col-md-offset-1 col-md-10" *ngIf="localStorage.getItem(global.currentUser)" (click)="AddToCart()">Add To Cart</button>
         <button class="button col-md-offset-1 col-md-10" (click)="preview()">Preview</button>
     </div>
     <div class="col-md-6">
         <dl>
-            <dt class="col-md-6">title:</dt>
-            <dd class="col-md-6">{{product.title}}</dd>
-            <dt class="col-md-6">subtitle:</dt>
-            <dd class="col-md-6">{{product.subtitle}}</dd>
-            <dt class="col-md-6">publisher:</dt>
-            <dd class="col-md-6">{{product.publisher}}</dd>
-            <dt class="col-md-6">publishedDate:</dt>
-            <dd class="col-md-6">{{product.publishedDate| date : 'shortDate'}}</dd>
-            <dt class="col-md-6">description:</dt>
-            <dd class="col-md-6">{{product.description}}</dd>
-            <dt class="col-md-6">pageCount:</dt>
-            <dd class="col-md-6">{{product.pageCount}}</dd>
-
+            <dt class="col-md-5">title:</dt>
+            <dd class="col-md-7">{{product.title}}&nbsp;</dd>
+            <dt class="col-md-5">subtitle:</dt>
+            <dd class="col-md-7">{{product.subtitle}}&nbsp;</dd>
+            <dt class="col-md-5">author:</dt>
+            <ng-container *ngFor="let author of product.authors;let i=index">
+                <dd class="col-md-7" [ngClass]="{'col-md-offset-5':i>0}">{{author}}&nbsp;</dd>
+            </ng-container>
+            <dd class="col-md-7" *ngIf="!product.authors||product.authors.length==0">&nbsp;</dd>
+            <dt class="col-md-5">publisher:</dt>
+            <dd class="col-md-7">{{product.publisher}}&nbsp;</dd>
+            <dt class="col-md-5">publishedDate:</dt>
+            <dd class="col-md-7">{{product.publishedDate| date : 'shortDate'}}&nbsp;</dd>
+            <dt class="col-md-5">description:</dt>
+            <dd class="col-md-7">{{product.description}}&nbsp;</dd>
+            <dt class="col-md-5">pageCount:</dt>
+            <dd class="col-md-7">{{product.pageCount}}&nbsp;</dd>
         </dl>
-
-        <!-- <span *ngFor="let author of product.authors">
-            <b>author: </b>{{author}}</span> -->
-
     </div>

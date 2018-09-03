@@ -13,3 +13,13 @@ dl{
 .button{
     margin-top: 5%;
 }
+.imageContainer{
+    background-color: black;
+    height: 100%;
+}
+img{
+    width: 100%;
+}
+.right{
+    height: 75%;
+}

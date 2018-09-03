@@ -53,6 +53,9 @@ export class LoginComponent {
         this.isExist = false;
     });
   }
+  /*
+   * @fun
+   */
   register(){
     this.router.navigate(['/bookStore/myAccount/register']);
   }

@@ -5,11 +5,13 @@
     margin-bottom: 10%;
     padding: 4%;
 }
-img{
-    width: 50%;
+.imageContainer{
+    background-color: black;
     height: 100%;
 }
-
+img{
+    width: 100%;
+}
 .content{
     height: 80%;
     padding-bottom: 8%;

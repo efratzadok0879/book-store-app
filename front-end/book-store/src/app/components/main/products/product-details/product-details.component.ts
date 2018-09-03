@@ -17,7 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     let productId: number;
     this.activatedRoute.params.subscribe(params => productId = params['productId']);
-    this.productService.getProductById(productId).subscribe(res => this.product = res)
+    this.product=this.productService.getProductById(productId);
 console.log(this.product);
   }
   AddToCart() {

@@ -14,17 +14,32 @@ export class AllProductsComponent implements OnInit {
 
   ngOnInit() {
 
-      this.getAllProducts();
-      this.productService.subject.subscribe(
-        {
-          next:(term: string)=>
+    this.getAllProducts();
+    this.productService.subject.subscribe(
+      {
+        next: (term: string) =>
           this.getAllProducts(term)
-    });
+      });
   }
-  getAllProducts(term?: string) {
+  // getAllProducts(term?: string) {
+  //   this.productService.getAllProducts(term).subscribe(res => {
+  //     this.products = [];
+  //     let index: number = 0;
+  //     res["items"].forEach(product => {
+  //       let currentProduct: Product = product.volumeInfo;
+  //       currentProduct.id = ++index;
+  //       this.products.push(currentProduct);
+  //     });
+  //     this.productService.subject.next(this.products);
+  //     console.log(this.products);
+  //   });
+  // }
+
+   getAllProducts(term?: string) {
     this.productService.getAllProducts(term).subscribe(res => {
       this.products = res;
-      console.log(res);
+      this.productService.subject.next(this.products);
+      console.log(this.products);
     });
   }
 }
