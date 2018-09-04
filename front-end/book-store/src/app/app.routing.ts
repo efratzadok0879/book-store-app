@@ -28,7 +28,7 @@ const appRoutes: Routes = [
         path: 'bookStore/products', component: ProductsComponent, children:
             [
                 { path: 'allProducts', component: AllProductsComponent },
-                { path: 'productDetails/:productId', component: ProductDetailsComponent },
+                { path: 'productDetails/:productId', component: ProductDetailsComponent,canActivate:[AuthGuard] },
                 { path: '**', redirectTo: 'allProducts' }
             ]
     },

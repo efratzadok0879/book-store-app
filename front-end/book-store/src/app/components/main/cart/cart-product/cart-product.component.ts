@@ -11,17 +11,26 @@ import { Product, ShoppingService, DialogConfirmComponent } from '../../../../im
 export class CartProductComponent implements OnInit {
 
   @Input()
-  product: Product;
+  product;
   constructor(private shoppingService: ShoppingService, private dialogService: DialogService) { }
 
   ngOnInit() {
 
   }
   removeBook() {
-    this.shoppingService.removeBookFromShoppingList(this.product.id);
+    this.shoppingService.removeBookFromShoppingList(this.product.product.id);
     this.shoppingService.subject.next();
   }
+  incAmount(){
+    this.product.amount++;
+    this.shoppingService.updateAmount(this.product)
+  }
+  decAmount(){
+    if(this.product.amount>1)
+    this.product.amount--;
+    this.shoppingService.updateAmount(this.product)
 
+  }
   showConfirm() {
     this.dialogService.addDialog(DialogConfirmComponent, {
       title: 'Remove Book',

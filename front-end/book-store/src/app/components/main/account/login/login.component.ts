@@ -11,13 +11,15 @@ import { Global, User, AuthenticationService } from '../../../../imports';
 export class LoginComponent {
 
   //----------------PROPERTIRS-------------------
+
   loginFormGroup: FormGroup;
+  //allow access from html page to 'Object' type
   objectHolder: typeof Object = Object;
-  submitted: boolean = false;
-  isExist: boolean = true;
+  isExistUser: boolean = true;
 
   //----------------CONSTRUCTOR------------------
-  constructor(private formBuilder: FormBuilder,private router:Router, private authenticationService: AuthenticationService) {
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private authenticationService: AuthenticationService) {
     this.loginFormGroup = this.formBuilder.group({
       userName: ['', this.createValidatorArr("userName", 3, 15, /^[A-Za-z]+$/)],
       password: ['', this.createValidatorArr("password", 5, 10)],
@@ -27,6 +29,14 @@ export class LoginComponent {
   }
 
   //----------------METHODS-------------------
+ /**
+   * @get:
+   * @param cntName string
+   * @param min min length of the string can contain
+   * @param max max length of the string can contain
+   * @param pattern pattern of the string - what it can contain
+   * @return string of error message if it is invalid ( and null if it's valid )
+   */
   createValidatorArr(cntName: string, min: number, max: number, pattern?: RegExp): Array<ValidatorFn> {
     return [
       f => !f.value ? { "val": `${cntName} is required` } : null,
@@ -38,25 +48,22 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.submitted = true;
     this.login();
   }
 
-  login(){
+  login() {
     this.authenticationService.login(this.userName.value, this.password.value)
-    .subscribe(user => {
-      if (user != null) {
-        localStorage.setItem(Global.currentUser, JSON.stringify(user));
-        this.router.navigate(['bookStore/products']);
-      }
-      else
-        this.isExist = false;
-    });
+      .subscribe(user => {
+        if (user != null) {
+          localStorage.setItem(Global.currentUser, JSON.stringify(user));
+          this.router.navigate(['bookStore/products']);
+        }
+        else
+          this.isExistUser = false;
+      });
   }
-  /*
-   * @fun
-   */
-  register(){
+
+  register() {
     this.router.navigate(['/bookStore/myAccount/register']);
   }
   //----------------GETTERS-------------------

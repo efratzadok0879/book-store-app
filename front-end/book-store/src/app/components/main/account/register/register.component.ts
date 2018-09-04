@@ -6,19 +6,22 @@ import { User, AuthenticationService, Global } from '../../../../imports';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css','../login/login.component.css']
+  styleUrls: ['./register.component.css', '../login/login.component.css']
 })
 
 export class RegisterComponent {
 
   //----------------PROPERTIRS-------------------
+
   registerFormGroup: FormGroup;
+  //allow access from html page to 'Object' type
   objectHolder: typeof Object = Object;
   isExistUserName: boolean = false;
   isExistPassword: boolean = false;
-  image: any;
+  imageFile: any;
 
   //----------------CONSTRUCTOR------------------
+
   constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
     this.registerFormGroup = this.formBuilder.group({
       firstName: ['', this.createValidatorArr("firstName", 2, 15, /^[A-Za-z]+$/)],
@@ -29,7 +32,14 @@ export class RegisterComponent {
   }
 
   //----------------METHODS-------------------
-
+ /**
+   * @get:
+   * @param cntName string
+   * @param min min length of the string can contain
+   * @param max max length of the string can contain
+   * @param pattern pattern of the string - what it can contain
+   * @return string of error message if it is invalid ( and null if it's valid )
+   */
   createValidatorArr(cntName: string, min?: number, max?: number, pattern?: RegExp): Array<ValidatorFn> {
     return [
       f => !f.value ? { "val": `${cntName} is required` } : null,
@@ -41,12 +51,14 @@ export class RegisterComponent {
 
   onSubmit() {
     let user: User = this.registerFormGroup.value;
-    this.authenticationService.upload(this.image).subscribe(res => {
-      console.log(res.newFilename);
-        user.profileImageUrl = res.newFilename;
+    //upload profile image in the server
+    this.authenticationService.upload(this.imageFile).subscribe(res => {
+      //placement image name to the user object
+      user.profileImageUrl = res.newFilename;
       this.register(user);
     });
   }
+
   register(user: User) {
     this.isExistUserName = false;
     this.isExistPassword = false;
@@ -62,6 +74,7 @@ export class RegisterComponent {
             break;
           default:
             user.id = userId;
+            //enter cuurent user into localStorage
             localStorage.setItem(Global.currentUser, JSON.stringify(user));
             this.router.navigate(['bookStore/products']);
             break;
@@ -69,11 +82,15 @@ export class RegisterComponent {
       },
       err => console.log(err));
   }
+  //get image from event emitter of 'upload-image' component
+  //when user choose his profile image
   getImage(value: any) {
-    this.image = value;
+    this.imageFile = value;
   }
 
   //----------------GETTERS-------------------
+
+  //getters of the form group controls
 
   get firstName() {
     return this.registerFormGroup.controls["firstName"];

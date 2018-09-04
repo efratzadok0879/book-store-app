@@ -12,6 +12,7 @@ export { ShoppingService } from './shared/services/shopping.service'
 
 //shared-components
 export { DialogConfirmComponent  } from './shared/components/dialog-confirm/dialog-confirm.component';
+export { TickComponent } from './shared/components/tick/tick.component';
 
 export { AuthGuard } from './shared/auth.guard';
 export { Global } from './shared/global';

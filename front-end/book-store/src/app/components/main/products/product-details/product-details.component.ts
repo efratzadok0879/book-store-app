@@ -12,6 +12,7 @@ export class ProductDetailsComponent implements OnInit {
   product: Product;
   localStorage = localStorage;
   global = Global;
+  showAnimation:boolean=false;
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private productService: ProductService,private shoppingService:ShoppingService) { }
 
   ngOnInit() {
@@ -22,6 +23,11 @@ console.log(this.product);
   }
   AddToCart() {
     this.shoppingService.addBookToShoppingList(this.product);
+
+    this.showAnimation=true;
+    setTimeout(() => {
+      this.showAnimation=false;
+    }, 2500);
   }
   preview() {
     this.router.navigate(['/bookStore/products/allProducts']);

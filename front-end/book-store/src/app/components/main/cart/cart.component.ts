@@ -10,7 +10,7 @@ import { Product, ShoppingService, DialogConfirmComponent } from '../../../impor
 
 export class CartComponent implements OnInit {
 
-  shoppingList: Product[];
+  shoppingList;
   constructor(private shoppingService: ShoppingService,private dialogService:DialogService) {
   }
 

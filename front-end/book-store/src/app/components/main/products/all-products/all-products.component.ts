@@ -39,7 +39,6 @@ export class AllProductsComponent implements OnInit {
     this.productService.getAllProducts(term).subscribe(res => {
       this.products = res;
       this.productService.subject.next(this.products);
-      console.log(this.products);
     });
   }
 }

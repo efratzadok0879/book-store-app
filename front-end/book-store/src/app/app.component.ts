@@ -9,8 +9,8 @@ import { Global } from './imports';
 export class AppComponent implements OnInit {
 
   ngOnInit() {
-    if (localStorage.getItem(Global.shoppingList) == null)
-      localStorage.setItem(Global.shoppingList, JSON.stringify([]));
+    // if (localStorage.getItem(Global.shoppingList) == null)
+    //   localStorage.setItem(Global.shoppingList, JSON.stringify([]));
   }
 
 }

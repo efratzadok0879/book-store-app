@@ -31,6 +31,7 @@ import {
   FooterComponent,
   //shared-components
   DialogConfirmComponent,
+  TickComponent,
   //services
   AuthenticationService,
   ProductService,
@@ -64,6 +65,7 @@ import {
     FooterComponent,
     //shared-components
     DialogConfirmComponent,
+    TickComponent,
   ],
   imports: [
     BrowserModule,
