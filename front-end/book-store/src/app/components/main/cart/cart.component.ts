@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from 'ng2-bootstrap-modal';
 import { Product, ShoppingService, DialogConfirmComponent } from '../../../imports';
-import { DialogService } from "ng2-bootstrap-modal";
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
+
 export class CartComponent implements OnInit {
 
   shoppingList: Product[];
@@ -17,7 +19,7 @@ export class CartComponent implements OnInit {
       next: () => this.getAllShoppingList()
     });
     this.getAllShoppingList();
-
+   
   }
   getAllShoppingList() {
     this.shoppingList = this.shoppingService.getAllShoppingList();
@@ -27,20 +29,16 @@ export class CartComponent implements OnInit {
     this.getAllShoppingList();
   }
   showConfirm() {
-    let disposable = this.dialogService.addDialog(DialogConfirmComponent, {
+    this.dialogService.addDialog(DialogConfirmComponent, {
       title: 'Clear Cart',
       message: 'Are You sure you want to clear all your cart?'
-    })
-      .subscribe((isConfirmed) => {
+    }).subscribe((isConfirmed) => {
         //We get dialog result
         if (isConfirmed) {
-         this.clearCart();
+          this.clearCart();
         }
       });
-    //We can close dialog calling disposable.unsubscribe();
-    //If dialog was not closed manually close it by timeout
-    // setTimeout(() => {
-    //   disposable.unsubscribe();
-    // }, 10000);
   }
+
+
 }

@@ -1,5 +1,6 @@
 //---------------------- shared ----------------------
 
+
 //models
 export { User } from './shared/models/user.model';
 export { Product } from './shared/models/product.model';
@@ -8,6 +9,9 @@ export { Product } from './shared/models/product.model';
 export { AuthenticationService } from './shared/services/authentication.service';
 export { ProductService } from './shared/services/product.service';
 export { ShoppingService } from './shared/services/shopping.service'
+
+//shared-components
+export { DialogConfirmComponent  } from './shared/components/dialog-confirm/dialog-confirm.component';
 
 export { AuthGuard } from './shared/auth.guard';
 export { Global } from './shared/global';
@@ -34,7 +38,6 @@ export { ProductPreviewComponent } from './components/main/products/product-prev
 export { ProductDetailsComponent } from './components/main/products/product-details/product-details.component';
 export { CartComponent } from './components/main/cart/cart.component';
 export { CartProductComponent } from './components/main/cart/cart-product/cart-product.component';
-export { DialogConfirmComponent  } from './components/main/dialog-confirm/dialog-confirm.component';
 
 //footer
 export { FooterComponent } from './components/footer/footer.component';

@@ -27,14 +27,14 @@ import {
   ProductDetailsComponent,
   CartComponent,
   CartProductComponent,
-  DialogConfirmComponent,
   //footer
   FooterComponent,
-
+  //shared-components
+  DialogConfirmComponent,
   //services
   AuthenticationService,
   ProductService,
-  ShoppingService
+  ShoppingService,
 } from './imports';
 
 @NgModule({
@@ -43,6 +43,7 @@ import {
     AppComponent,
     //header
     HeaderComponent,
+    LogoComponent,
     MenuComponent,
     //main
     MainComponent,
@@ -59,10 +60,10 @@ import {
     ProductDetailsComponent,
     CartComponent,
     CartProductComponent,
-    DialogConfirmComponent,
     //footer
     FooterComponent,
-    LogoComponent
+    //shared-components
+    DialogConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +79,7 @@ import {
   providers: [
     AuthenticationService,
     ProductService,
-    ShoppingService
+    ShoppingService,
   ],
   bootstrap: [AppComponent]
 })

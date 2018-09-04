@@ -17,6 +17,7 @@ export class DialogConfirmComponent extends DialogComponent<ConfirmModel, boolea
   message: string;
   constructor(dialogService: DialogService) {
     super(dialogService);
+
   }
   confirm() {
     // we set dialog result as true on click on confirm button, 
@@ -24,4 +25,5 @@ export class DialogConfirmComponent extends DialogComponent<ConfirmModel, boolea
     this.result = true;
     this.close();
   }
+
 }
