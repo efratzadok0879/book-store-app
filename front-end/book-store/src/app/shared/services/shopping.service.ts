@@ -11,7 +11,10 @@ export class ShoppingService {
 
     //----------------METHODS-------------------
 
-    //get key of shopping list of the current user in the localStorage
+    /**
+       * @method
+       * get key of shopping list of the current user in the localStorage
+       */
     getKey() {
         let userId: number = JSON.parse(localStorage.getItem(Global.CurrentUser)).id;
         let key: string = `userId${userId}:${Global.ShoppingList}`;
@@ -41,11 +44,18 @@ export class ShoppingService {
         shoppingList.splice(index, 1);
         this.updateShoppingList(shoppingList);
     }
-
+    /**
+     * @method
+     * clear all user's cart
+     */
     clearCart() {
         this.updateShoppingList([]);
     }
-
+    /**
+     * @method
+     *   update the amount of a certain book
+     * @param productToUpdate -the amount books to update
+     */
     updateAmount(productToUpdate) {
         let shoppingList = this.getAllShoppingList();
         let index = shoppingList.findIndex(product => product.product.title == productToUpdate.product.title);

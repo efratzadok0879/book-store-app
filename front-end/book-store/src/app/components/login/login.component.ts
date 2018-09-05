@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, ValidatorFn, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Global, User, AuthenticationService } from '../../../../imports';
+import { Global, User, AuthenticationService, createValidatorArr } from '../../imports';
 
 @Component({
   selector: 'app-login',
@@ -22,23 +22,13 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authenticationService: AuthenticationService) {
     this.loginFormGroup = this.formBuilder.group({
-      userName: ['', this.createValidatorArr("userName", 3, 15, /^[A-Za-z]+$/)],
-      password: ['', this.createValidatorArr("password", 5, 10)],
+      userName: ['', createValidatorArr("userName", 3, 15, /^[A-Za-z]+$/)],
+      password: ['', createValidatorArr("password", 5, 10)],
 
     });
   }
 
   //----------------METHODS-------------------
-
-  createValidatorArr(cntName: string, min: number, max: number, pattern?: RegExp): Array<ValidatorFn> {
-    return [
-      f => !f.value ? { "val": `${cntName} is required` } : null,
-      f => f.value && f.value.length > max ? { "val": `${cntName} is max ${max} chars` } : null,
-      f => f.value && f.value.length < min ? { "val": `${cntName} is min ${min} chars` } : null,
-      f => f.value && pattern && !f.value.match(pattern) ? { "val": `${cntName} is contain only english letter` } : null
-
-    ];
-  }
 
   onSubmit() {
     this.login();

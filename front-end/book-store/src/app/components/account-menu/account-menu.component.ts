@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService, Global } from '../../../../imports';
+import { AuthenticationService, Global } from '../../imports';
 
 @Component({
   selector: 'app-account-menu',
   templateUrl: './account-menu.component.html',
   styleUrls: ['./account-menu.component.css']
 })
+
 export class AccountMenuComponent {
 
   //----------------PROPERTIRS-------------------

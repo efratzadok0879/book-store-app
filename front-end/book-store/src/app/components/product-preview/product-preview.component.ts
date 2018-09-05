@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from '../../../../imports';
+import { Product } from '../../imports';
 
 @Component({
   selector: 'app-product-preview',

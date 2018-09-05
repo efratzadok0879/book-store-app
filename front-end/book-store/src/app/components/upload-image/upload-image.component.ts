@@ -10,9 +10,14 @@ export class UploadImageComponent {
 
   //----------------PROPERTIRS-------------------
 
+  //reference to element in html that has local variable named 'inputFile'
+  // (local variable in html is declared with # char)
   @ViewChild('inputFile')
   myInputVariable: ElementRef;
 
+  
+  //reference to element in html that has local variable named 'imageUpload'
+  // (local variable in html is declared with # char)
   @ViewChild('imageUpload')
   imageUpload: ElementRef;
 
@@ -52,5 +57,6 @@ export class UploadImageComponent {
   removeUpload() {
     this.locationUrl = null;
     this.imageControl.setValue(null);
+    this.eventImage.emit(null);
   }
 }

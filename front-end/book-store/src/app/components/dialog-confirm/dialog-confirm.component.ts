@@ -27,9 +27,12 @@ export class DialogConfirmComponent extends DialogComponent<ConfirmModel, boolea
 
   //----------------METHODS-------------------
 
+  /**
+   *@method
+   * set dialog result as true on click on confirm button,  
+  * then we can get dialog result from caller code 
+   */
   confirm() {
-    // set dialog result as true on click on confirm button, 
-    // then we can get dialog result from caller code 
     this.result = true;
     this.close();
   }

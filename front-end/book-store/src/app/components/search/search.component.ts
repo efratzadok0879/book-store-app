@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ProductService } from '../../../../imports';
+import { ProductService } from '../../imports';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +10,7 @@ import { ProductService } from '../../../../imports';
 export class SearchComponent {
   //----------------PROPERTIRS-------------------
 
-  seachControl:FormControl=new FormControl();
+  seachControl: FormControl = new FormControl();
 
   //----------------CONSTRUCTOR------------------
 
@@ -18,9 +18,12 @@ export class SearchComponent {
 
   //----------------METHODS-------------------
 
-  //'all-product' component will filter the product list according to this string
+  /**
+   * @method
+   * 'all-product' component will filter the product list according to this string
+   */
   onKeyUp() {
     this.productService.searchSubject.next(this.seachControl.value);
   }
-  
+
 }

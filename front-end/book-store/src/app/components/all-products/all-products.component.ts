@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, ProductService } from '../../../../imports';
+import { Product, ProductService } from '../../imports';
 
 @Component({
   selector: 'app-all-products',

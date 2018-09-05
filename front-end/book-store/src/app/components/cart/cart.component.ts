@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogService } from 'ng2-bootstrap-modal';
-import { Product, ShoppingService, DialogConfirmComponent } from '../../../imports';
+import { Product, ShoppingService, DialogConfirmComponent } from '../../imports';
 
 @Component({
   selector: 'app-cart',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup, ValidatorFn, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User, AuthenticationService, Global } from '../../../../imports';
+import { User, AuthenticationService, Global, createValidatorArr } from '../../imports';
 
 @Component({
   selector: 'app-register',
@@ -24,23 +24,14 @@ export class RegisterComponent {
 
   constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
     this.registerFormGroup = this.formBuilder.group({
-      firstName: ['', this.createValidatorArr("firstName", 2, 15, /^[A-Za-z]+$/)],
-      lastName: ['', this.createValidatorArr("lastName", 2, 15, /^[A-Za-z]+$/)],
-      userName: ['', this.createValidatorArr("userName", 3, 15, /^[A-Za-z]+$/)],
-      password: ['', this.createValidatorArr("password", 5, 10)],
+      firstName: ['', createValidatorArr("firstName", 2, 15, /^[A-Za-z]+$/)],
+      lastName: ['', createValidatorArr("lastName", 2, 15, /^[A-Za-z]+$/)],
+      userName: ['', createValidatorArr("userName", 3, 15, /^[A-Za-z]+$/)],
+      password: ['', createValidatorArr("password", 5, 10)],
     });
   }
 
   //----------------METHODS-------------------
-
-  createValidatorArr(cntName: string, min?: number, max?: number, pattern?: RegExp): Array<ValidatorFn> {
-    return [
-      f => !f.value ? { "val": `${cntName} is required` } : null,
-      f => f.value && max && f.value.length > max ? { "val": `${cntName} is max ${max} chars` } : null,
-      f => f.value && min && f.value.length < min ? { "val": `${cntName} is min ${min} chars` } : null,
-      f => f.value && pattern && !f.value.match(pattern) ? { "val": `${cntName} is contain only english letter` } : null
-    ];
-  }
 
   onSubmit() {
     let user: User = this.registerFormGroup.value;
@@ -75,8 +66,11 @@ export class RegisterComponent {
       },
       err => console.log(err));
   }
-  //get image from event emitter of 'upload-image' component
-  //when user choose his profile image
+  /**
+   * @method
+   * get image from event emitter of 'upload-image' component 
+   * when user choose his profile image
+   */
   getImage(value: any) {
     this.imageFile = value;
   }
