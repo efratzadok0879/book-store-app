@@ -25,12 +25,30 @@ app.use(cors(corsOptions));
 
 const basePath = path.join(__dirname);
 
+const basePathDist = `${basePath}/dist`;
+
+
 app.get(`/`, (req, res) => {
-    let resPage = fs.readFileSync("./dist/book-store/index.html", "utf-8");
-    res.send(resPage);
+    let linkList = "";
+    let resPage=fs.readFileSync("links.html","utf-8");
+   console.log(resPage);
+    fs.readdir(basePathDist, (err, files) => {
+        files.forEach((file) => {
+            linkList += `<li><a href="/${file}" target="blank">${file}</a></li>`;
+        })
+        res.send(resPage.replace("placeHolder", linkList));
+    });
 
 });
 
+fs.readdir(basePathDist, (err, files) => {
+    files.forEach((file) => {
+        app.use(express.static(`${basePathDist}/${file}`));
+        app.get(`/${file}`, (req, res) => {
+            res.sendFile(`${basePathDist}/${file}/index.html`);
+        });
+    })
+});
 
 app.post("/api/login", (req, res) => {
     let userName = req.body.userName;
