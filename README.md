@@ -26,3 +26,7 @@ npm start
 ##### See live demo:
 https://lit-temple-43730.herokuapp.com/book-store
 
+```bush
+//modal dialog is not work in heroku, only in localhost
+```
+
