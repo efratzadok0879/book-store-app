@@ -34,9 +34,9 @@ const appRoutes: Routes = [
     {
         path: 'bookStore/cart', component: CartComponent, canActivate: [AuthGuard]
     },
-    { path: 'bookStore', redirectTo: 'bookStore/home' },
+    { path: 'bookStore', component:HomeComponent },
     // otherwise redirect to home
-    { path: '**', redirectTo: 'bookStore/home' }
+    { path: '**', component:HomeComponent }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
