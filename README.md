@@ -24,6 +24,6 @@ npm start
 ```
 
 ##### See live demo:
-https://lit-temple-43730.herokuapp.com/book-store
+https://efrat-zadok-book-store.herokuapp.com
 
 
