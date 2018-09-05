@@ -29,25 +29,15 @@ const basePathDist = `${basePath}/dist`;
 
 
 app.get(`/`, (req, res) => {
-    let linkList = "";
-    let resPage=fs.readFileSync("links.html","utf-8");
-   console.log(resPage);
-    fs.readdir(basePathDist, (err, files) => {
-        files.forEach((file) => {
-            linkList += `<li><a href="/${file}" target="blank">${file}</a></li>`;
-        })
-        res.send(resPage.replace("placeHolder", linkList));
-    });
-
+    res.sendFile(`${basePathDist}/book-store/index.html`);
 });
 
 fs.readdir(basePathDist, (err, files) => {
-    files.forEach((file) => {
-        app.use(express.static(`${basePathDist}/${file}`));
-        app.get(`/${file}`, (req, res) => {
-            res.sendFile(`${basePathDist}/${file}/index.html`);
-        });
-    })
+    app.use(express.static(`${basePathDist}/book-store`));
+    app.get('/book-store', (req, res) => {
+        res.sendFile(`${basePathDist}/book-store/index.html`);
+    });
+
 });
 
 app.post("/api/login", (req, res) => {
