@@ -13,5 +13,5 @@
         </button>
       </div>
     </div>
-    <p *ngIf="imageControl.errors&&(touched||submitted)">image is required --todo</p>
+    <p *ngIf="touched&&!locationUrl">image is required --todo</p>
   </div>

@@ -4,7 +4,7 @@
         <div class="imageContainer col-md-12">
             <img src="{{product.imageLinks}}">
         </div>
-        <button class="btn-outline-primary button col-md-offset-1 col-md-10" *ngIf="localStorage.getItem(global.currentUser)" (click)="AddToCart()">Add To Cart</button>
+        <button class="btn-outline-primary button col-md-offset-1 col-md-10" *ngIf="localStorage.getItem(global.CurrentUser)" (click)="AddToCart()">Add To Cart</button>
         <button class="button col-md-offset-1 col-md-10" (click)="preview()">Preview</button>
         <app-tick *ngIf="showAnimation"></app-tick>
 

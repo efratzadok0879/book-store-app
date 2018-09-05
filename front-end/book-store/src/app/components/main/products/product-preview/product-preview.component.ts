@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../../../../imports';
 
@@ -7,16 +7,21 @@ import { Product } from '../../../../imports';
   templateUrl: './product-preview.component.html',
   styleUrls: ['./product-preview.component.css']
 })
-export class ProductPreviewComponent implements OnInit {
+export class ProductPreviewComponent {
+
+  //----------------PROPERTIRS-------------------
 
   @Input()
-  product:Product;
-  constructor(private router:Router) { }
+  product: Product;
 
-  ngOnInit() {
+  //----------------CONSTRUCTOR------------------
 
+  constructor(private router: Router) { }
+
+  //----------------METHODS-------------------
+
+  viewDetails() {
+    this.router.navigate(['/bookStore/products/productDetails', this.product.id]);
   }
-  viewDetails(){
-    this.router.navigate(['/bookStore/products/productDetails',this.product.id]);
-  }
+  
 }

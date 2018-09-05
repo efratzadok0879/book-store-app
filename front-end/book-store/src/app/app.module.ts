@@ -4,6 +4,7 @@ import { routing } from './app.routing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {
   //components
@@ -72,8 +73,8 @@ import {
     routing,
     ReactiveFormsModule,
     HttpClientModule,
-    BootstrapModalModule.forRoot({ container: document.body })
-
+    BootstrapModalModule.forRoot({ container: document.body }),
+    NgbModule
   ],
   entryComponents: [
     DialogConfirmComponent

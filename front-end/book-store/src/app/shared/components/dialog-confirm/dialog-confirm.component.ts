@@ -13,14 +13,22 @@ export interface ConfirmModel {
 })
 export class DialogConfirmComponent extends DialogComponent<ConfirmModel, boolean> implements ConfirmModel {
 
+  //----------------PROPERTIRS-------------------
+
   title: string;
   message: string;
+
+  //----------------CONSTRUCTOR------------------
+
   constructor(dialogService: DialogService) {
     super(dialogService);
 
   }
+
+  //----------------METHODS-------------------
+
   confirm() {
-    // we set dialog result as true on click on confirm button, 
+    // set dialog result as true on click on confirm button, 
     // then we can get dialog result from caller code 
     this.result = true;
     this.close();

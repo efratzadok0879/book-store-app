@@ -8,6 +8,8 @@ import { FormControl, Form } from '@angular/forms';
 })
 export class UploadImageComponent {
 
+  //----------------PROPERTIRS-------------------
+
   @ViewChild('inputFile')
   myInputVariable: ElementRef;
 
@@ -17,41 +19,38 @@ export class UploadImageComponent {
   @Output()
   eventImage: EventEmitter<any>;
 
-
-  @Input()
-  submitted:boolean;
-
-  imageControl:FormControl;
+  imageControl: FormControl;
   locationUrl: string = null;
   imageName: string = '';
-  touched:boolean=false;
+  touched: boolean = false;
+
+  //----------------CONSTRUCTOR------------------
+
   constructor() {
     this.eventImage = new EventEmitter<any>();
-    this.imageControl=new FormControl('', [ f => !f.value ? { "val": 'image is required' } : null,]);
+    this.imageControl = new FormControl('', [f => !f.value ? { "val": 'image is required' } : null,]);
   }
+
+  //----------------METHODS-------------------
 
   showPreviewImage(event: any): void {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.onload = (event: any) => {
         this.locationUrl = event.target.result;
-       
       }
       reader.readAsDataURL(event.target.files[0]);
       this.imageName = event.target.files[0].name;
     }
     this.eventImage.emit(event.target.files[0]);
-    this.imageControl.setValue(null);
-
   }
 
   triggerInputFileEvent() {
-    this.touched=true;
+    this.touched = true;
     this.myInputVariable.nativeElement.click();
   }
   removeUpload() {
-
     this.locationUrl = null;
+    this.imageControl.setValue(null);
   }
-
 }

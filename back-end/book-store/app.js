@@ -1,52 +1,46 @@
+//---------------- PACKAGES ------------------
+
+//to get paths
 const path = require('path');
+
+//to accsess  directories and files
 const fs = require('fs');
 
 const express = require('express');
 const app = express();
 
+//enable to take the body of the request
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+//enable to serve the client
 const cors = require('cors');
 var corsOptions = {
     origin: 'http://localhost:4200',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+    // some legacy browsers (IE11, various SmartTVs) choke on 204 
+    optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
 
-var multer = require('multer')
-var upload = multer({ dest: 'uploads/' })
-const uuidv4 = require('uuid/v4');
-
-// app.get("/api/getUserById", (req, res) => {
-//     let userId = req.query.userId;
-//     let cuurentList = require("./user.json");
-//     let user = cuurentList.find(user => user.id == userId);
-//     if (user != null)
-//         res.status(201).send(user);
-//     else
-//         res.status(404);
-// })
-
 app.post("/api/login", (req, res) => {
-    console.log('aaa');
     let userName = req.body.userName;
     let password = req.body.password;
-    console.log(userName);
-    console.log(password);
     if (isValidLogin(userName, password)) {
-        console.log('valid');
+
+        //serch in user.json file if there is a user who has the gotted userName and password as parameter
         let currentList = require("./user.json");
-        console.log(currentList);
         let user = currentList.find(user =>
             user.userName.toLowerCase() == userName.toLowerCase() &&
             user.password.toLowerCase() == password.toLowerCase());
-        if (user != null)
+        let isExistingUser = user != null;
+        //if user is existing return this user else return null
+        if (isExistingUser)
             res.status(201).send(user);
         else
             res.status(201).send(null);
     }
+    //if the parameters are not valid
     else {
         console.log("bad");
         res.status(400);
@@ -55,61 +49,59 @@ app.post("/api/login", (req, res) => {
 })
 
 app.post("/api/register", (req, res) => {
-    console.log('aaa');
-    let currentUser = req.body;
-    console.log(currentUser);
-    if (isValidRegister(currentUser)) {
-        console.log('valid');
+    let registeredUser = req.body;
+    if (isValidRegister(registeredUser)) {
         let currentList = require("./user.json");
-        console.log(currentList);
-        let user1 = currentList.find(user => user.userName.toLowerCase() == currentUser.userName.toLowerCase());
+
+        //check if the userName and password of the registered user are unique
+
+        //search user with the same username as the registered user
+        let user1 = currentList.find(user => user.userName.toLowerCase() == registeredUser.userName.toLowerCase());
         if (user1 != null) {
-            console.log(-1);
-            removeImage(currentUser.profileImageUrl)
+            //if some user was founded remove his uploaded profile image and return -1
+            removeImage(registeredUser.profileImageUrl)
             res.send({ userId: -1 });
             return;
         }
-        let user2 = currentList.find(user => user.password.toLowerCase() == currentUser.password.toLowerCase());
+
+        //search user with the same password as the registered user
+        let user2 = currentList.find(user => user.password.toLowerCase() == registeredUser.password.toLowerCase());
         if (user2 != null) {
-            console.log(-2);
-            removeImage(currentUser.profileImageUrl)
+            //if some user was founded remove his uploaded profile image and return -2
+            removeImage(registeredUser.profileImageUrl)
             res.send({ userId: -2 });
             return;
         }
-        currentUser.id = currentList.length == 0 ? 1 : Math.max(...currentList.map(user => user.id)) + 1;
-        currentList.push(currentUser);
+        //if userName and password are unique - it's ok, add the user to the user.json file and return his id
+        registeredUser.id = currentList.length == 0 ? 1 : Math.max(...currentList.map(user => user.id)) + 1;
+        currentList.push(registeredUser);
         fs.writeFileSync("user.json", JSON.stringify(currentList));
-        res.status(201).send({ userId: currentUser.id });
+        res.status(201).send({ userId: registeredUser.id });
     }
+    //if not all the registered user details are valid
     else {
         console.log("bad");
         res.status(400);
     }
 
 })
-const handleError = (err, res) => {
-    console.log("handle err");
-    res
-        .status(500)
-        .contentType("text/plain")
-        .end("Oops! Something went wrong!");
-};
 
-app.post("/api/upload", upload.single("file" /* name attribute of <file> element in your form */),
+//to upload images
+var multer = require('multer')
+var upload = multer({ dest: 'uploads/' })
+
+//to rand string so that the uploaded image name will be unique
+const uuidv4 = require('uuid/v4');
+
+//upload image and return it's new name
+app.post("/api/upload", upload.single("file" /* name of the key in the formData object in client side*/),
     (req, res) => {
-        console.log("upload");
-        console.log(__dirname);  
         const tempPath = req.file.path;
-        console.log(tempPath);
         const newFilename = `${uuidv4()}.JPG`;
-        console.log(newFilename);
         const targetPath = path.join(__dirname, `./uploads/${newFilename}`);
-        console.log(targetPath);
         fs.rename(tempPath, targetPath, err => {
             if (err)
                 return handleError(err, res);
-            console.log("rename");
-
             res.status(200).send({ newFilename: newFilename });
         });
     });
@@ -121,14 +113,19 @@ app.get(`/uploads`, (req, res) => {
     res.sendFile(`${basePath}/uploads/${fileName}`);
 });
 
-// Assuming that 'path/file.txt' is a regular file.
-removeImage=(fileName)=>{
+removeImage = (fileName) => {
     fs.unlink(`${basePath}/uploads/${fileName}`, (err) => {
         if (err) throw err;
-        console.log('path/file.txt was deleted');
-      });
+        console.log('image was deleted');
+    });
 }
-
+const handleError = (err, res) => {
+    console.log("handle err");
+    res
+        .status(500)
+        .contentType("text/plain")
+        .end("Oops! Something went wrong!");
+};
 
 isValidLogin = (userName, password) => {
     return isValidUserName(userName) && isValidPassword(password);
@@ -164,44 +161,6 @@ isValidString = (str) => {
 isValidLength = (str, min, max) => {
     return str.length >= min && str.length <= max;
 }
+
 const port = process.env.PORT || 3500;
 app.listen(port, () => { console.log(`OK`); });
-
-
-
-
-// app.get(`/`, (req, res) => {
-//     let linkList = "";
-//     let resPage = fs.readFileSync("links.html", "utf-8");
-//     fs.readdir(basePath, (err, files) => {
-//         files.forEach((file) => {
-//             linkList += `<li><a href="/${file}" target="blank">${file}</a></li>`;
-//         })
-//         res.send(resPage.replace("placeHolder", linkList));
-//     });
-
-// });
-
-// fs.readdir(basePath, (err, files) => {
-//     files.forEach((file) => {
-//         app.use(express.static(`${basePath}/${file}`));
-//         app.get(`/${file}`, (req, res) => {
-//             res.sendFile(`${basePath}/${file}/index.html`);
-//         });
-//     })
-// });
-
-
-
-// curl -v -X POST -H "Content-type: application/json" –d "{\"id\":\"207138132\"}" http://localhost:3500/api/user
-//user{id,age,name,isMale,country}
-
-// app.get("/api/getList", (req, res) => {
-//     let fileName = req.query.fileName;
-//     let List = require(`./${fileName}.json`);
-//     if (List)
-//         res.status(201).send(JSON.stringify(List));
-//     else
-//         req.status(400);
-
-// })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Global } from '../../../imports';
 
 @Component({
@@ -6,11 +6,11 @@ import { Global } from '../../../imports';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent {
 
-  localStorage = localStorage;
-  global=Global;
-  constructor() { }
-  ngOnInit() {
-  }
+  //----------------PROPERTIRS-------------------
+
+  //allow access types via interpolation
+  localStorage: Storage = localStorage;
+  global: any = Global;
 }

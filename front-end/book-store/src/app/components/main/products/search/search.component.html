@@ -1,4 +1,4 @@
 <div id="group">
     <i class="glyphicon glyphicon-search"></i>
-    <input type="text" id="search" name="search" placeholder="Search" (keyup)="onKeyUp($event)" />
+    <input type="text" id="search" name="search" placeholder="Search" [formControl]=seachControl (keyup)="onKeyUp()" />
 </div>

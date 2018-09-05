@@ -7,8 +7,8 @@
           <h3>{{product.product.title}}</h3>
           <h4 class="subtitle">{{product.product.subtitle}}</h4>
           <h5><b>Amount: </b>{{product.amount}}</h5>
-          <button class="plus" (click)="incAmount()">+</button>
-          <button class="minus" (click)="decAmount()">-</button>
+          <button class="plus" (click)="incAmount()" placement="top" ngbTooltip="increase amount">+</button>
+          <button class="minus" (click)="decAmount()" placement="top" ngbTooltip="decrease amount">-</button>
       </div>
   </div>
   <div class="row">

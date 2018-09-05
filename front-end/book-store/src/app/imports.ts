@@ -39,7 +39,6 @@ export { ProductPreviewComponent } from './components/main/products/product-prev
 export { ProductDetailsComponent } from './components/main/products/product-details/product-details.component';
 export { CartComponent } from './components/main/cart/cart.component';
 export { CartProductComponent } from './components/main/cart/cart-product/cart-product.component';
-
 //footer
 export { FooterComponent } from './components/footer/footer.component';
 

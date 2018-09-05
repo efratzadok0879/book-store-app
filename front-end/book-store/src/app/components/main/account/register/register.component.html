@@ -46,7 +46,7 @@
                     </div>
                     <p *ngIf="isExistPassword" class="myAlert">password already exsits</p>
                 </div>
-                <app-upload-image [submitted]="submitted" (eventImage)="getImage($event)"></app-upload-image>
+                <app-upload-image (eventImage)="getImage($event)"></app-upload-image>
 
                 <button type="submit" class="button col-md-offset-2 col-md-8" [disabled]="registerFormGroup.invalid||isExistUserName || isExistPassword">Register</button>
             </form>

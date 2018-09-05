@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ProductService } from '../../../../imports';
 
 @Component({
@@ -6,14 +7,20 @@ import { ProductService } from '../../../../imports';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
+  //----------------PROPERTIRS-------------------
 
+  seachControl:FormControl=new FormControl();
+
+  //----------------CONSTRUCTOR------------------
 
   constructor(private productService: ProductService) { }
 
-  ngOnInit() {
+  //----------------METHODS-------------------
+
+  //'all-product' component will filter the product list according to this string
+  onKeyUp() {
+    this.productService.searchSubject.next(this.seachControl.value);
   }
-  onKeyUp(value) {
-    this.productService.subject.next(value);
-  }
+  
 }
