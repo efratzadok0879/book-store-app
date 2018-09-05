@@ -1,7 +1,7 @@
 <div>
   <div class="file-upload">
     <button class="file-upload-btn my-btn" type="button" (click)="triggerInputFileEvent()">Add Your Image</button>
-    <div [ngStyle]="{'display':locationUrl===null?'block':'none'}" #imageUpload>
+    <div class="image-upload-wrap" [ngStyle]="{'display':locationUrl===null?'block':'none'}" #imageUpload>
       <input type="file" class="file-upload-input" [formControl]="imageControl" (change)="showPreviewImage($event)" #inputFile/>
     </div>
     <div class="file-upload-content" *ngIf="locationUrl">
