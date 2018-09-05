@@ -17,11 +17,20 @@ app.use(bodyParser.json());
 //enable to serve the client
 const cors = require('cors');
 var corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: 'https://lit-temple-43730.herokuapp.com/',
     // some legacy browsers (IE11, various SmartTVs) choke on 204 
     optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
+
+const basePath = path.join(__dirname);
+
+app.get(`/`, (req, res) => {
+    let resPage = fs.readFileSync("./dist/book-store/index.html", "utf-8");
+    res.send(resPage);
+
+});
+
 
 app.post("/api/login", (req, res) => {
     let userName = req.body.userName;
@@ -106,7 +115,7 @@ app.post("/api/upload", upload.single("file" /* name of the key in the formData 
         });
     });
 
-const basePath = path.join(__dirname);
+
 
 app.get(`/uploads`, (req, res) => {
     let fileName = req.query.fileName;

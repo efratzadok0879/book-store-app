@@ -13,7 +13,7 @@
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label for="firstName" [ngClass]="{'label':true,'full':firstName.value!=''}">First Name</label>
-                    <div *ngIf="firstName.errors&& (firstName.touched || submitted)">
+                    <div *ngIf="firstName.errors&& firstName.touched">
                         <p *ngFor="let err of objectHolder.values(firstName.errors)" class="myAlert">{{err}}</p>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label for="lastName" [ngClass]="{'label':true,'full':lastName.value!=''}">Last Name</label>
-                    <div *ngIf="lastName.errors&& (lastName.touched || submitted)">
+                    <div *ngIf="lastName.errors&& lastName.touched">
                         <p *ngFor="let err of objectHolder.values(lastName.errors)" class="myAlert">{{err}}</p>
                     </div>
                </div>
@@ -31,7 +31,7 @@
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label for="userName"[ngClass]="{'label':true,'full':userName.value!=''}">User Name</label>
-                    <div *ngIf="userName.errors&& (userName.touched || submitted)">
+                    <div *ngIf="userName.errors&&userName.touched">
                         <p *ngFor="let err of objectHolder.values(userName.errors)" class="myAlert">{{err}}</p>
                     </div>
                     <p *ngIf="isExistUserName" class="myAlert">user name already exsits</p>
@@ -41,7 +41,7 @@
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label for="password" [ngClass]="{'label':true,'full':password.value!=''}">Password</label>
-                    <div *ngIf="password.errors&& (password.touched || submitted)">
+                    <div *ngIf="password.errors&&password.touched">
                         <p *ngFor="let err of objectHolder.values(password.errors)" class="myAlert">{{err}}</p>
                     </div>
                     <p *ngIf="isExistPassword" class="myAlert">password already exsits</p>

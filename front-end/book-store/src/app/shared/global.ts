@@ -1,8 +1,8 @@
 
 export const Global =
 {
-    Host:"http://localhost:3500",
-    Uploads:"http://localhost:3500/uploads",
+    Host:"https://lit-temple-43730.herokuapp.com/",
+    Uploads:"https://lit-temple-43730.herokuapp.com/uploads",
     CurrentUser: "currentUser",
     ShoppingList:"shoppingList"
 };

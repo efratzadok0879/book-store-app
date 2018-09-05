@@ -1,8 +1,7 @@
 <div>
   <div class="file-upload">
     <button class="file-upload-btn my-btn" type="button" (click)="triggerInputFileEvent()">Add Your Image</button>
-    <div [ngClass]="{'image-dropping':imgDropping==true,'image-upload-wrap':true}" (dragover)="dragOver_Droping()" (dragleave)="dragLeave_Droping()"
-      [ngStyle]="{'display':locationUrl===null?'block':'none'}" #imageUpload>
+    <div [ngStyle]="{'display':locationUrl===null?'block':'none'}" #imageUpload>
       <input type="file" class="file-upload-input" [formControl]="imageControl" (change)="showPreviewImage($event)" #inputFile/>
     </div>
     <div class="file-upload-content" *ngIf="locationUrl">
@@ -13,5 +12,5 @@
         </button>
       </div>
     </div>
-    <p *ngIf="touched&&!locationUrl">image is required --todo</p>
+    <p *ngIf="touched&&!locationUrl">image is required</p>
   </div>
