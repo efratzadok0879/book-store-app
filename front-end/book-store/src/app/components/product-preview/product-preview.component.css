@@ -27,3 +27,9 @@ img{
 .preview{
     margin-top: 8%;
 }
+.scrollbar{
+    overflow-x: hidden;
+}
+.force-overflow{
+    min-height: 85%;
+}

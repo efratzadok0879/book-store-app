@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 //enable to serve the client
 const cors = require('cors');
 var corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: '*',
     // some legacy browsers (IE11, various SmartTVs) choke on 204 
     optionsSuccessStatus: 200
 }
