@@ -2,7 +2,7 @@
     <div *ngIf="product" class="productDetailsContainer col-md-offset-3 col-md-6 row">
         <div class="col-md-5 right">
             <div class="imageContainer col-md-12">
-                <img src="{{product.imageLinks}}">
+                <img src="{{product.imageLinks.smallThumbnail}}">
             </div>
             <button class="btn-outline-primary button col-md-offset-1 col-md-10" *ngIf="localStorage.getItem(global.CurrentUser)" (click)="AddToCart()">Add To Cart</button>
             <button class="button col-md-offset-1 col-md-10" (click)="preview()">Preview</button>
