@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
-import { FormControl, Form } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-upload-image',

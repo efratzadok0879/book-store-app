@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup, ValidatorFn, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Global, User, AuthenticationService, createValidatorArr } from '../../imports';
+import { Global, AuthenticationService, createValidatorArr } from '../../imports';
 
 @Component({
   selector: 'app-login',
